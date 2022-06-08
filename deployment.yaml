@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: test
+  name: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: test
+    spec:
+      volumes:
+      - name: trust-volume
+        configMap:
+          name: trust-keys
+      containers:
+      - image: gcr.io/[PROJECT_ID]/hello-world-spring-app:latest
+        name: spring-boot-hello-world
+        resources: {}
+        volumeMounts:
+        - mountPath: /tmp/trust
+          name: trust-volume
+status: {}

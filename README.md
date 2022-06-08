@@ -2,7 +2,20 @@
 
 This is a small Spring-Boot Hello World application to demonstrate a quick and simple API.
 
+## DB Setup
 
+Create a Google CloudSQL instance, disable Public IP address and enable Private IP address only. Also select "Allow SSL Connections Only" in the instance's security settings. 
+
+- Create Database instance called test
+- In the instance test, create a table called ACCOUNTS using the following DDL 
+
+```sql
+    CREATE TABLE ACCOUNTS (
+        id int,
+        name varchar(255),
+        desc varchar(255)
+    );
+```
 
 ## Generating the keystore and truststore
 
@@ -53,4 +66,4 @@ kubectl expose deployment test --port 80 --target-port 8080 --type LoadBalancer
 ```
 
 
-> There is nothing to display on the `/` endpoint. Please visit [LB_IP]/getTuples
+> There is nothing to display on the `/` endpoint. Please visit `[LB_IP]/getTuples`
